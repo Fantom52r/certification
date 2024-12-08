@@ -1,22 +1,38 @@
-import React from 'react'
+import React from "react";
 
-const UserList = ({user,setSelectedUser,selectedUser}) => {
+const UserList = ({ user, setSelectedUser, selectedUser }) => {
   return (
-    <div>
-      <div key={user.id}>
-          <img src={user.avatar_url} alt={user.login} />
-          <h2 onClick={() => setSelectedUser(user)}>{user.login}</h2>
-          <p>Followers: {user.followers}</p>
-          {selectedUser && selectedUser.id===user.id && (
-            <p>
-              "url": {user.url},<p>"html_url": {user.url}</p>,
-              <p>"followers_url": {user.followers_url}</p> ,
-              <p>"following_url": {user.following_url}</p>
-            </p>
-          )}
+    <div className="user-card">
+      <img
+        className="user-avatar"
+        src={user.avatar_url}
+        alt={user.login}
+      />
+      <h2
+        className="user-name"
+        onClick={() => setSelectedUser(user)}
+      >
+        {user.login}
+      </h2>
+      <p className="user-followers">Followers: {user.followers}</p>
+      {selectedUser && selectedUser.id === user.id && (
+        <div className="selected-details">
+          <p>
+            <strong>URL:</strong>{" "}
+            <a href={user.url} target="_blank" rel="noopener noreferrer">
+              {user.url}
+            </a>
+          </p>
+          <p>
+            <strong>HTML URL:</strong>{" "}
+            <a href={user.html_url} target="_blank" rel="noopener noreferrer">
+              {user.html_url}
+            </a>
+          </p>
         </div>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default UserList
+export default UserList;
